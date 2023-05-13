@@ -48,13 +48,13 @@ runs:
             owner: context.repo.owner,
             title: '🍕 time',
             body: `![pizza-drone](https://media.giphy.com/media/HW8qVWQId1aY8/200w_d.gif)
-                  # Hi @rajbos! A 🍕 is on its way to ${FIRSTNAME} ${LASTNAME}!
+            # Hi @rajbos! A 🍕 is on its way to ${FIRSTNAME} ${LASTNAME}!
 
-                  My pizza algorithm says it should arrive in **35** minutes.
-                  ** Track the pizza: https://order.dominos.com/orderstorage/GetTrackerData?Phone=${PHONE} **
-                  > Email receipt sent to ${EMAIL}.
+            My pizza algorithm says it should arrive in **35** minutes.
+            ** Track the pizza: https://order.dominos.com/orderstorage/GetTrackerData?Phone=${PHONE} **
+            > Email receipt sent to ${EMAIL}.
 
-                  Please tip the driver appropriately.`
+            Please tip the driver appropriately.`
           })
 
 
