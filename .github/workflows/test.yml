@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - demotime
       - 'releases/*'
   workflow_dispatch:
     inputs:
