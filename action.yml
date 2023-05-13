@@ -51,7 +51,7 @@ runs:
             # Hi @rajbos! A 🍕 is on its way to ${FIRSTNAME} ${LASTNAME}!
 
             My pizza algorithm says it should arrive in **35** minutes.
-            ** Track the pizza: https://order.dominos.com/orderstorage/GetTrackerData?Phone=${PHONE} **
+            > **Track the pizza: [here](https://order.dominos.com/orderstorage/GetTrackerData?Phone=${PHONE})**
             > Email receipt sent to ${EMAIL}.
 
             Please tip the driver appropriately.`
