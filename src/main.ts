@@ -1,5 +1,6 @@
-import * as core from '@actions/core';
-import { GitHub, context } from '@actions/github';
+const core = require('@actions/core');
+const GitHub = require('@actions/github').GitHub;
+const context = require('@actions/github').context;
 import * as pizza from './pizzapi';
 
 const getInputs = () => {
