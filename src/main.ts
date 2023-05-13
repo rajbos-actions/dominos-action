@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const GitHub = require('@actions/github').GitHub;
 const context = require('@actions/github').context;
-import * as pizza from './pizzapi';
+const pizza = require('./pizzapi');
 
 const getInputs = () => {
   const address = core.getInput('address', { required: true });
