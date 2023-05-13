@@ -5,6 +5,11 @@ on:
     branches:
       - master
       - 'releases/*'
+  workflow_dispatch:
+    inputs:
+      active:
+        description: 'Whether to actually order a pizza'
+        default: 'false'
 
 jobs:
   test:
