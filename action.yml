@@ -46,7 +46,7 @@ runs:
           github.rest.issues.create({
             repo: context.repo.repo,
             owner: context.repo.owner,
-            title: '🍕 time',
+            title: '🍕 delivery time for ${FIRSTNAME} ${LASTNAME}',
             body: `![pizza-drone](https://media.giphy.com/media/HW8qVWQId1aY8/200w_d.gif)
             # Hi @rajbos! A 🍕 is on its way to ${FIRSTNAME} ${LASTNAME}!
 
