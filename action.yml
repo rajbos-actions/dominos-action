@@ -39,7 +39,7 @@ runs:
         script: |
           # multiline title block
           const body = `![pizza-drone](https://media.giphy.com/media/HW8qVWQId1aY8/200w_d.gif)
-                  # Hi @${user}! A 🍕 is on its way to ${inputs.firstName} ${inputs.lastName}!
+                  # Hi @rajbos! A 🍕 is on its way to ${inputs.firstName} ${inputs.lastName}!
                   My pizza algorithm says it should arrive in ${placedInformation.EstimatedWaitMinutes} minutes.
                   ** Track the pizza: https://order.dominos.com/orderstorage/GetTrackerData?Phone=${inputs.phone} **
                   Email receipt sent to ${inputs.email}.
