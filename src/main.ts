@@ -1,6 +1,6 @@
 const core = require('@actions/core');
-const GitHub = require('@actions/github').GitHub;
-const context = require('@actions/github').context;
+const GitHub = require('@actions/github');
+//const context = require('@actions/github').context;
 const pizza = require('./pizzapi');
 
 const getInputs = () => {
@@ -66,6 +66,9 @@ async function run() {
 
       placedInformation.EstimatedWaitMinutes = placed.result.Order.EstimatedWaitMinutes;
     }
+    else {
+      placedInformation.EstimatedWaitMinutes = "999";
+    }
 
     if (!active) {
       console.log('In sandbox mode, hope it worked well!');
@@ -89,7 +92,7 @@ async function run() {
 
       Please tip the driver appropriately.
       `,
-      ...context.repo
+      ...GitHub.context.repo
     });
     console.log(issue.status);
     console.log(issue.data.id);
