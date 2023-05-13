@@ -1,5 +1,5 @@
-const core = require('@actions/core');
-const Octokit = require('octokit');
+import core from '@actions/core';
+import {Octokit} from 'octokit';
 //const pizza = require('./pizzapi');
 
 const getInputs = () => {
@@ -76,8 +76,10 @@ async function run() {
     
     //const user = 'Rob'; // todo, load from context    
     const octokit = new Octokit({ auth: token });
-    const user = octokit.context.actor;
-    const issue = await octokit.issues.create({
+    const user = "rajbos";
+    const repo = process.env.GITHUB_REPOSITORY.split('/')[1];
+    const owner = process.env.GITHUB_REPOSITORY.split('/')[0];
+    const issue = await octokit.rest.issues.create({
     //const issue = await github.issues.create({
       title: '🍕 time',
       body: `
@@ -93,7 +95,8 @@ async function run() {
 
       Please tip the driver appropriately.
       `,
-      ...octokit.context.repo
+      owner: owner,
+      repo: repo
     });
     console.log(issue.status);
     console.log(issue.data.id);
