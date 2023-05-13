@@ -1,6 +1,7 @@
 const core = require('@actions/core');
-const GitHub = require('@actions/github');
+//const GitHub = require('@actions/github');
 //const context = require('@actions/github').context;
+const Octokit = require('@octokit');
 const pizza = require('./pizzapi');
 
 const getInputs = () => {
@@ -33,7 +34,7 @@ async function run() {
     const token = core.getInput('github-token', { required: true });
     const inputs = getInputs();
     const active = core.getInput('active', { required: true }) === 'true';
-    const github = new GitHub(token);
+    //const github = new GitHub(token);
     const order = pizza.standardOrder(
       inputs.address,
       inputs.email,
@@ -75,9 +76,11 @@ async function run() {
       //return;
     }
     
-    const user = 'Rob'; // todo, load from context
-
-    const issue = await github.issues.create({
+    //const user = 'Rob'; // todo, load from context    
+    const octokit = new Octokit({ auth: token });
+    const user = octokit.context.actor;
+    const issue = await octokit.issues.create({
+    //const issue = await github.issues.create({
       title: '🍕 time',
       body: `
       ![pizza-drone](https://media.giphy.com/media/HW8qVWQId1aY8/200w_d.gif)
@@ -92,7 +95,7 @@ async function run() {
 
       Please tip the driver appropriately.
       `,
-      ...GitHub.context.repo
+      ...octokit.context.repo
     });
     console.log(issue.status);
     console.log(issue.data.id);
