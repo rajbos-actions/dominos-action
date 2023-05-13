@@ -46,42 +46,45 @@ async function run() {
     const priced = await pizza.price(order);
     console.log('Priced');
     console.log(JSON.stringify(priced));
-    const placed = await pizza.place(
-      order,
-      inputs.cardNumber,
-      inputs.expiration,
-      inputs.securityCode,
-      inputs.cardPostalCode,
-      active
-    );
-    console.log('Placed!', active);
-    console.log(JSON.stringify(placed));
+    
+    let placedInformation = {
+      EstimatedWaitMinutes: ""
+    };
+    
+    if (!active) {
+      const placed = await pizza.place(
+        order,
+        inputs.cardNumber,
+        inputs.expiration,
+        inputs.securityCode,
+        inputs.cardPostalCode,
+        active
+      );
+      console.log('Placed!', active);
+      console.log(JSON.stringify(placed));
+
+      placedInformation.EstimatedWaitMinutes = placed.result.Order.EstimatedWaitMinutes;
+    }
 
     if (!active) {
       console.log('In sandbox mode, hope it worked well!');
-      return;
+      //return;
     }
-
-    const {
-      EstimatedWaitMinutes,
-      Email,
-      FirstName,
-      LastName
-    } = placed.result.Order;
-    const user = 'nicknisi';
+    
+    const user = 'Rob'; // todo, load from context
 
     const issue = await github.issues.create({
       title: '🍕 time',
       body: `
       ![pizza-drone](https://media.giphy.com/media/HW8qVWQId1aY8/200w_d.gif)
 
-      # Hi @${user}! A 🍕 is on its way to ${FirstName} ${LastName}!
+      # Hi @${user}! A 🍕 is on its way to ${inputs.firstName} ${inputs.lastName}!
 
-      My pizza algorithm says it should arrive in ${EstimatedWaitMinutes} minutes.
+      My pizza algorithm says it should arrive in ${placedInformation.EstimatedWaitMinutes} minutes.
 
       ** Track the pizza: https://order.dominos.com/orderstorage/GetTrackerData?Phone=${inputs.phone} **
 
-      Email receipt sent to ${Email}.
+      Email receipt sent to ${inputs.email}.
 
       Please tip the driver appropriately.
       `,
