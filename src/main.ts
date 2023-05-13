@@ -1,8 +1,6 @@
 const core = require('@actions/core');
-//const GitHub = require('@actions/github');
-//const context = require('@actions/github').context;
 const Octokit = require('@octokit');
-const pizza = require('./pizzapi');
+//const pizza = require('./pizzapi');
 
 const getInputs = () => {
   const address = core.getInput('address', { required: true });
@@ -35,37 +33,37 @@ async function run() {
     const inputs = getInputs();
     const active = core.getInput('active', { required: true }) === 'true';
     //const github = new GitHub(token);
-    const order = pizza.standardOrder(
-      inputs.address,
-      inputs.email,
-      inputs.phone,
-      inputs.firstName,
-      inputs.lastName
-    );
-    const validated = await pizza.validate(order);
-    console.log('Validated');
-    console.log(JSON.stringify(validated));
-    const priced = await pizza.price(order);
-    console.log('Priced');
-    console.log(JSON.stringify(priced));
+    // const order = pizza.standardOrder(
+    //   inputs.address,
+    //   inputs.email,
+    //   inputs.phone,
+    //   inputs.firstName,
+    //   inputs.lastName
+    // );
+    // const validated = await pizza.validate(order);
+    // console.log('Validated');
+    // console.log(JSON.stringify(validated));
+    // const priced = await pizza.price(order);
+    // console.log('Priced');
+    // console.log(JSON.stringify(priced));
     
     let placedInformation = {
-      EstimatedWaitMinutes: ""
+      EstimatedWaitMinutes: "10"
     };
     
     if (!active) {
-      const placed = await pizza.place(
-        order,
-        inputs.cardNumber,
-        inputs.expiration,
-        inputs.securityCode,
-        inputs.cardPostalCode,
-        active
-      );
-      console.log('Placed!', active);
-      console.log(JSON.stringify(placed));
+      // const placed = await pizza.place(
+      //   order,
+      //   inputs.cardNumber,
+      //   inputs.expiration,
+      //   inputs.securityCode,
+      //   inputs.cardPostalCode,
+      //   active
+      // );
+      // console.log('Placed!', active);
+      // console.log(JSON.stringify(placed));
 
-      placedInformation.EstimatedWaitMinutes = placed.result.Order.EstimatedWaitMinutes;
+      //placedInformation.EstimatedWaitMinutes = placed.result.Order.EstimatedWaitMinutes;
     }
     else {
       placedInformation.EstimatedWaitMinutes = "999";
