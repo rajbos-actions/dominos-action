@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const Octokit = require('@octokit');
+const Octokit = require('octokit');
 //const pizza = require('./pizzapi');
 
 const getInputs = () => {
