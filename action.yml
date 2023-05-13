@@ -34,7 +34,6 @@ runs:
   steps:
     # create an issue in the repo
     - uses: actions/github-script@v3
-      if: ${{ github.event_name == 'push' }}
       with:
         github-token: ${{ inputs.github-token }}
         script: |
