@@ -37,7 +37,7 @@ runs:
       with:
         github-token: ${{ inputs.github-token }}
         script: |          
-          github.issues.create({
+          github.rest.issues.create({
             repo: context.repo.repo,
             owner: context.repo.owner,
             title: '🍕 time',
