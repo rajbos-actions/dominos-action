@@ -34,13 +34,13 @@ runs:
   steps:
     # create an issue in the repo
     - uses: actions/github-script@v6
+      env:
+        FIRSTNAME: ${{ inputs.first-name }}
+        LASTNAME: ${{ inputs.last-name }}
+        EMAIL: ${{ inputs.email }}
+        PHONE: ${{ inputs.phone }}
       with:
-        github-token: ${{ inputs.github-token }}
-        env:
-          FIRSTNAME: ${{ inputs.first-name }}
-          LASTNAME: ${{ inputs.last-name }}
-          EMAIL: ${{ inputs.email }}
-          PHONE: ${{ inputs.phone }}
+        github-token: ${{ inputs.github-token }}        
         script: |          
           const {FIRSTNAME, LASTNAME, EMAIL, PHONE} = process.env
           github.rest.issues.create({
